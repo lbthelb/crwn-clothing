@@ -7,7 +7,7 @@ import ShopPage from './pages/shop/shop.component.jsx';
 import Header from './components/header/header.component.jsx';
 import SignInAndSignUpPage from './pages/sign-in/sign-in-sign-up.component.jsx';
 
-import { auth } from './firebase/firebase.utils';
+import { auth, CreateUserProfileDocument } from './firebase/firebase.utils';
 
 
 class App extends React.Component {
@@ -22,9 +22,9 @@ class App extends React.Component {
   unsubscribeFromAuth = null;
 
   componentDidMount(){
-    this.unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async user => {
       this.setState({currentUser: user})
-      console.log(user)
+      console.log(CreateUserProfileDocument)
     });
   }
 
@@ -45,5 +45,7 @@ class App extends React.Component {
   );
 }
 }
+
+
 
 export default App;
