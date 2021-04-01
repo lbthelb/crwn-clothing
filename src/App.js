@@ -9,11 +9,12 @@ import SignInAndSignUpPage from './pages/sign-in/sign-in-sign-up.component.jsx';
 import CheckoutPage from './pages/checkout/checkout.component';
 import { setCurrentUser } from './redux/user/user.actions';
 
-import { auth, createUserProfileDocument } from './firebase/firebase.utils';
+import { auth, createUserProfileDocument} from './firebase/firebase.utils';
 
 import { connect } from 'react-redux';
 import { selectCurrentUser } from './redux/user/user.selector';
 import { createStructuredSelector } from 'reselect';
+
 
 
 
@@ -34,13 +35,12 @@ class App extends React.Component {
               ...snapShot.data()
             
           });  
-          console.log(this.state)
         });
        
       }
-     else {
-       setCurrentUser(userAuth);
-     }
+     
+       setCurrentUser(userAuth);    
+     
     });
   }
 
@@ -64,12 +64,13 @@ class App extends React.Component {
 }
 
 const mapStateToProps = createStructuredSelector({
- currentUser: selectCurrentUser
-})
+ currentUser: selectCurrentUser,
+
+});
 
 const mapDispatchToProps = dispatch => ({
   setCurrentUser: user => dispatch(setCurrentUser(user))
 });
 
 
-export default connect(mapStateToProps,mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
